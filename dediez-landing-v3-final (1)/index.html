@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DeDiez · Convertí la atención en tu ventaja competitiva</title>
+<link rel="icon" type="image/png" href="assets/logo-mark.png">
+<meta name="description" content="DeDiez mide la satisfacción del cliente en tiempo real con tablets y QR. Para negocios que quieren atender De Diez." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* ============== TOKENS ============== */
+  :root{
+    --green: #22C55E;
+    --green-600:#16a34a;
+    --blue:  #3B5BDB;
+    --blue-700:#2b46b5;
+    --ink:   #0B1220;
+    --ink-2: #1a2234;
+    --muted: #5b6678;
+    --line:  #e6e9ef;
+    --bg:    #ffffff;
+    --bg-2:  #f6f8fb;
+    --bg-3:  #eef2f8;
+    --white: #ffffff;
+    --radius: 18px;
+    --radius-lg: 28px;
+    --shadow-sm: 0 1px 2px rgba(15,23,42,.04), 0 2px 8px rgba(15,23,42,.04);
+    --shadow-md: 0 4px 14px rgba(15,23,42,.06), 0 18px 40px -12px rgba(15,23,42,.12);
+    --shadow-lg: 0 24px 60px -20px rgba(15,23,42,.25);
+    --gradient: linear-gradient(135deg, #22C55E 0%, #3B5BDB 100%);
+    --gradient-soft: linear-gradient(135deg, rgba(34,197,94,.10) 0%, rgba(59,91,219,.10) 100%);
+  }
+
+  /* ============== RESET ============== */
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    color:var(--ink); background:var(--bg);
+    line-height:1.55; font-size:16px; -webkit-font-smoothing:antialiased;
+  }
+  img{ max-width:100%; display:block; }
+  button{ font-family:inherit; cursor:pointer; border:none; }
+  a{ color:inherit; text-decoration:none; }
+  ::selection{ background: #d2f5e0; color: var(--ink); }
+
+  .wrap{ width:min(1200px, 92%); margin-inline:auto; }
+
+  h1,h2,h3,h4{ font-family:inherit; letter-spacing:-0.02em; line-height:1.08; margin:0; color:var(--ink); }
+  h1{ font-weight:900; font-size: clamp(2.2rem, 5.8vw, 4.5rem); line-height:1.05; }
+  h2{ font-weight:800; font-size: clamp(1.85rem, 4vw, 3rem); letter-spacing:-0.03em;}
+  h3{ font-weight:700; font-size: clamp(1.15rem, 1.8vw, 1.35rem); }
+  p{ margin:0; }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:.8rem; font-weight:600; color:var(--blue);
+    background:#eef2fe; padding:6px 12px; border-radius:999px;
+    text-transform:uppercase; letter-spacing:.06em;
+  }
+  .eyebrow .dot{ width:6px; height:6px; background:var(--green); border-radius:50%; box-shadow:0 0 0 4px rgba(34,197,94,.18);}
+  .grad-text{
+    background: var(--gradient);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+
+  /* ============== BUTTONS ============== */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:14px 22px; border-radius:14px; font-weight:600; font-size:.98rem;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+    white-space:nowrap;
+  }
+  .btn svg{ width:18px; height:18px; }
+  .btn-primary{ background:var(--green); color:white; box-shadow: 0 12px 28px -8px rgba(34,197,94,.55); font-weight:700; }
+  .btn-primary:hover{ transform: translateY(-2px); background:var(--green-600); box-shadow:0 16px 30px -10px rgba(34,197,94,.6);}
+  .btn-ghost{ background:rgba(11,18,32,.04); color:var(--ink); }
+  .btn-ghost:hover{ background:rgba(11,18,32,.07); }
+  .btn-outline{ background:white; color:var(--ink); border:1px solid var(--line); }
+  .btn-outline:hover{ border-color:var(--ink); }
+  .btn-grad{ background:var(--gradient); color:white; box-shadow:0 14px 30px -10px rgba(59,91,219,.55);}
+  .btn-grad:hover{ transform: translateY(-2px); box-shadow:0 18px 36px -10px rgba(59,91,219,.65);}
+  .btn-lg{ padding:20px 34px; font-size:1.08rem; border-radius:16px; }
+
+  /* ============== NAVBAR ============== */
+  .nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    transition: background .25s ease, box-shadow .25s ease, backdrop-filter .25s ease, border-color .25s ease;
+    border-bottom:1px solid transparent;
+  }
+  .nav.scrolled{
+    background: rgba(255,255,255,.82);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 16px 0;
+  }
+  .logo{
+    display:inline-flex; align-items:center; gap:10px;
+  }
+  .logo img{ height: 36px; width:auto; display:block; }
+  .footer .logo img{ height: 34px; filter: brightness(0) invert(1) brightness(1.2); }
+  /* Fallback: render full-color on footer using a masked white version would be complex;
+     instead show original logo with subtle backdrop */
+  .footer .logo img{ filter:none; background: white; padding: 6px 10px; border-radius: 10px; }
+
+  .nav-links{ display:flex; align-items:center; gap:28px; }
+  .nav-links a{
+    font-size:.93rem; color:var(--ink-2); font-weight:500; position:relative;
+  }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; right:100%; bottom:-6px; height:2px; background:var(--green);
+    transition: right .25s ease; border-radius:2px;
+  }
+  .nav-links a:hover::after{ right:0; }
+
+  .nav-cta{ display:flex; align-items:center; gap:10px; }
+
+  .hamburger{
+    display:none; width:44px; height:44px; border-radius:12px;
+    background:rgba(11,18,32,.05); align-items:center; justify-content:center;
+  }
+  .hamburger span{ width:18px; height:2px; background:var(--ink); display:block; position:relative;}
+  .hamburger span::before,.hamburger span::after{ content:""; position:absolute; width:18px; height:2px; background:var(--ink); left:0;}
+  .hamburger span::before{ top:-6px;}
+  .hamburger span::after{ top:6px;}
+
+  .mobile-menu{
+    display:none; position:fixed; inset: 70px 0 0 0; background:white; z-index:99; padding:28px;
+    flex-direction:column; gap:10px; border-top:1px solid var(--line);
+  }
+  .mobile-menu a{ padding:14px 0; font-size:1.1rem; border-bottom:1px solid var(--line); font-weight:500; }
+  .mobile-menu .btn{ margin-top:14px; }
+  .mobile-menu.open{ display:flex; }
+
+  @media (max-width: 900px){
+    .nav-links{ display:none; }
+    .nav-cta .btn{ display:none; }
+    .hamburger{ display:flex; }
+  }
+
+  /* ============== HERO ============== */
+  .hero{
+    padding: 140px 0 60px;
+    position:relative; overflow:hidden;
+    background:
+      radial-gradient(80% 60% at 85% 0%, rgba(59,91,219,.08), transparent 60%),
+      radial-gradient(60% 50% at 10% 20%, rgba(34,197,94,.10), transparent 60%),
+      #fbfcfe;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items:center;
+  }
+  .hero h1 .grad-text{ display:inline; }
+  .hero p.lead{
+    color:var(--muted); font-size: clamp(1.05rem, 1.35vw, 1.22rem); margin-top:26px; max-width: 52ch; line-height:1.7;
+  }
+  .hero-ctas{ display:flex; gap:14px; margin-top:38px; flex-wrap:wrap; }
+  .hero-meta{
+    display:flex; align-items:center; gap:16px; margin-top:30px; color:var(--muted); font-size:.9rem;
+  }
+  .avatars{ display:flex; }
+  .avatars i{
+    width:32px; height:32px; border-radius:50%; background:var(--gradient); border:2px solid white;
+    display:inline-block; margin-left:-8px; font-style:normal;
+  }
+  .avatars i:first-child{ margin-left:0; background: linear-gradient(135deg,#22C55E,#0ea5e9);}
+  .avatars i:nth-child(2){ background: linear-gradient(135deg,#3B5BDB,#8b5cf6);}
+  .avatars i:nth-child(3){ background: linear-gradient(135deg,#f59e0b,#22C55E);}
+  .avatars i:nth-child(4){ background: linear-gradient(135deg,#ef4444,#3B5BDB);}
+
+  /* Tablet mockup */
+  .hero-visual{ position:relative; display:grid; place-items:center; }
+  .tablet{
+    width: min(460px, 100%);
+    aspect-ratio: 10/14;
+    background: #ffffff;
+    border-radius: 34px;
+    padding: 22px;
+    box-shadow:
+      0 40px 80px -20px rgba(15,23,42,.25),
+      0 8px 24px -8px rgba(15,23,42,.15),
+      inset 0 0 0 2px #eef1f6;
+    position:relative;
+    transform: perspective(1400px) rotateY(-6deg) rotateX(4deg);
+    transition: transform .6s ease;
+  }
+  .tablet:hover{ transform: perspective(1400px) rotateY(-2deg) rotateX(2deg);}
+  .tablet::before{
+    content:""; position:absolute; top:50%; right:-3px; transform:translateY(-50%);
+    width:3px; height:46px; background:#d1d6df; border-radius:2px;
+  }
+  .tablet-screen{
+    background: linear-gradient(180deg, #f6faff 0%, #ffffff 100%);
+    border-radius: 20px; height:100%; padding: 26px 22px;
+    display:flex; flex-direction:column; justify-content:space-between;
+    border:1px solid #eef1f6;
+  }
+  .tablet-head{ display:flex; justify-content:space-between; align-items:center; color:var(--muted); font-size:.72rem; font-weight:500; }
+  .tablet-head .brand{ font-weight:800; color:var(--ink); font-size:.95rem; letter-spacing:-.02em;}
+  .tablet-head .brand span{ color:var(--green);}
+  .tablet-prompt{
+    text-align:center; margin-top: 6px;
+  }
+  .tablet-prompt h4{ font-size: 1.15rem; font-weight:700; letter-spacing:-.02em;}
+  .tablet-prompt p{ color:var(--muted); font-size:.85rem; margin-top:6px;}
+  .emojis{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top: 16px;
+  }
+  .emoji-btn{
+    aspect-ratio:1/1; background:transparent; border-radius:18px; border:none;
+    display:grid; place-items:center; padding: 6%;
+    transition: transform .25s ease;
+    animation: bounceIn .5s cubic-bezier(.2,.9,.3,1.4) both;
+  }
+  .emoji-btn:hover{ transform: translateY(-4px) scale(1.06); }
+  .emoji-btn img{ width:100%; height:100%; object-fit:contain; display:block; }
+  .emoji-btn:nth-child(1){ animation-delay:.15s; }
+  .emoji-btn:nth-child(2){ animation-delay:.25s; }
+  .emoji-btn:nth-child(3){ animation-delay:.35s; }
+  .emoji-btn:nth-child(4){ animation-delay:.45s; }
+
+
+  .tablet-foot{
+    display:flex; align-items:center; justify-content:space-between; color:var(--muted); font-size:.72rem;
+    padding-top: 12px; border-top:1px dashed #e6e9ef;
+  }
+  .tablet-foot .pill{
+    display:inline-flex; align-items:center; gap:6px; background:#ecfdf5; color:#166534; padding:4px 10px;
+    border-radius:999px; font-weight:600;
+  }
+  .tablet-foot .pill i{ width:6px; height:6px; border-radius:50%; background:var(--green); display:inline-block; animation:pulse 1.5s infinite;}
+
+  .floating-card{
+    position:absolute; background:white; padding:14px 18px; border-radius:16px; box-shadow: var(--shadow-md);
+    display:flex; align-items:center; gap:10px; font-size:.85rem; font-weight:500;
+    animation: floaty 4.5s ease-in-out infinite;
+  }
+  .floating-card.fc1{ top:8%; left:-2%; animation-delay:.1s;}
+  .floating-card.fc2{ bottom:12%; right:-4%; animation-delay:.8s;}
+  .floating-card .emoji{ font-size:1.3rem;}
+  .floating-card b{ color:var(--ink); font-weight:700;}
+
+  @keyframes floaty{ 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-10px);} }
+  @keyframes pulse{ 0%,100%{ opacity:1; transform:scale(1);} 50%{ opacity:.5; transform:scale(1.4);}}
+  @keyframes bounceIn{ 0%{opacity:0; transform:scale(.5);} 100%{ opacity:1; transform:scale(1);}}
+
+  /* Trust bar */
+  .trust{
+    margin-top: 72px; padding: 28px 30px; background:white; border-radius: var(--radius);
+    box-shadow: var(--shadow-sm); border:1px solid var(--line);
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 24px; align-items:center;
+  }
+  .trust .stat{ display:flex; flex-direction:column; gap:2px;}
+  .trust .stat b{ font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight:800; letter-spacing:-.03em;}
+  .trust .stat span{ color:var(--muted); font-size:.88rem;}
+  .trust .stat:nth-child(1) b{ color: var(--green);}
+  .trust .stat:nth-child(2) b{ color: var(--blue);}
+  .trust .stat:nth-child(3) b{ color: var(--ink);}
+  .trust .stat:nth-child(4) b{ background: var(--gradient); -webkit-background-clip:text; background-clip:text; color:transparent;}
+
+  @media (max-width: 900px){
+    .hero{ padding: 110px 0 40px;}
+    .hero-grid{ grid-template-columns:1fr; gap:48px;}
+    .trust{ grid-template-columns: repeat(2, 1fr); }
+    .tablet{ transform:none;}
+    .floating-card.fc1{ top:4%; left:-4%;}
+    .floating-card.fc2{ bottom:4%; right:-2%;}
+  }
+
+  /* ============== SECTION GENERIC ============== */
+  section.block{ padding: clamp(90px, 11vw, 150px) 0; }
+  .section-head{ text-align:center; max-width: 720px; margin: 0 auto 72px; }
+  .section-head .eyebrow{ margin-bottom: 14px; }
+  .section-head p.sub{ color:var(--muted); margin-top: 14px; font-size:1.05rem; }
+
+  /* ============== QUE ES ============== */
+  .qe-grid{
+    display:grid; grid-template-columns: 1.1fr .9fr; gap: 70px; align-items:center;
+  }
+  .problem{
+    padding: 24px 26px; border-left: 3px solid #ef4444; background: #fff6f6; border-radius:4px 16px 16px 4px;
+    color:#7a1c1c; font-weight:500;
+  }
+  .solution{
+    padding: 24px 26px; border-left: 3px solid var(--green); background: #f1fdf5; border-radius:4px 16px 16px 4px;
+    margin-top: 18px; color:#0e5b2e; font-weight:500;
+  }
+  .key-phrase{
+    margin-top: 28px; font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight:700; letter-spacing:-.02em;
+    line-height:1.3;
+  }
+  .key-phrase em{ font-style:normal; background: var(--gradient); -webkit-background-clip:text; background-clip:text; color:transparent;}
+
+  .benefits{ display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
+  .benefit{
+    padding: 28px; background:white; border:1px solid var(--line); border-radius:18px;
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  .benefit:hover{ transform: translateY(-4px); border-color: rgba(34,197,94,.4); box-shadow: var(--shadow-md);}
+  .benefit .ico{
+    width:42px; height:42px; border-radius:12px; background:var(--gradient-soft);
+    display:grid; place-items:center; margin-bottom:12px; color:var(--blue);
+  }
+  .benefit h4{ font-size:1rem; font-weight:700; margin-bottom:4px;}
+  .benefit p{ color:var(--muted); font-size:.88rem; }
+
+  @media (max-width:900px){ .qe-grid{ grid-template-columns:1fr; gap:40px;} }
+
+  /* ============== COMO FUNCIONA ============== */
+  .bg-light{ background: var(--bg-2); }
+  .steps{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset:step;
+  }
+  .step{
+    background:white; border-radius: var(--radius); padding: 34px 28px 28px;
+    position:relative; border:1px solid var(--line);
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .step:hover{ transform: translateY(-6px); box-shadow: var(--shadow-md);}
+  .step-num{
+    width:40px; height:40px; border-radius:12px; background:var(--gradient); color:white;
+    display:grid; place-items:center; font-weight:800; font-size:1.05rem;
+    margin-bottom: 20px; box-shadow: 0 10px 20px -8px rgba(59,91,219,.5);
+  }
+  .step h3{ font-size:1.05rem; font-weight:700; margin-bottom:8px;}
+  .step .arrow{ color: var(--green); font-weight:700; margin-bottom: 6px; font-size:.85rem; }
+  .step p{ color:var(--muted); font-size:.92rem;}
+  .step-visual{
+    height:110px; margin-bottom:20px; border-radius: 14px;
+    background: var(--gradient-soft);
+    display:grid; place-items:center; font-size:2.2rem;
+    border:1px dashed rgba(59,91,219,.2);
+  }
+  @media (max-width: 900px){ .steps{ grid-template-columns:1fr 1fr;} }
+  @media (max-width: 540px){ .steps{ grid-template-columns:1fr;} }
+
+  .after-steps{ text-align:center; margin-top:46px; }
+
+  /* ============== SOLUCIONES ============== */
+  .industries{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;
+  }
+  .ind-card{
+    position:relative; aspect-ratio: 4/5; border-radius: 20px; overflow:hidden;
+    background: #eef2f8; cursor:pointer;
+    transition: transform .35s cubic-bezier(.2,.9,.2,1);
+  }
+  .ind-card:hover{ transform: translateY(-6px); }
+  .ind-photo{
+    position:absolute; inset:0;
+    background-size: cover; background-position:center;
+  }
+  /* "photos" are stylized gradient placeholders */
+  .ph-gastro{    background: linear-gradient(135deg, #ff9966, #ff5e62);}
+  .ph-retail{    background: linear-gradient(135deg, #8b5cf6, #3B5BDB);}
+  .ph-salud{     background: linear-gradient(135deg, #06b6d4, #3B5BDB);}
+  .ph-hotel{     background: linear-gradient(135deg, #f59e0b, #ef4444);}
+  .ph-pro{       background: linear-gradient(135deg, #0f172a, #334155);}
+  .ph-gym{       background: linear-gradient(135deg, #22C55E, #0ea5e9);}
+  .ph-edu{       background: linear-gradient(135deg, #f472b6, #8b5cf6);}
+  .ph-gov{       background: linear-gradient(135deg, #3B5BDB, #1e3a8a);}
+  .ph-auto{      background: linear-gradient(135deg, #64748b, #0f172a);}
+  .ph-beauty{    background: linear-gradient(135deg, #ec4899, #f59e0b);}
+
+  .ind-photo::after{
+    content:""; position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(11,18,32,0) 30%, rgba(11,18,32,.85) 100%);
+  }
+  .ind-photo::before{
+    content:""; position:absolute; inset: 14% 14% auto auto; width:56px; height:56px; border-radius:14px;
+    background: rgba(255,255,255,.18); backdrop-filter: blur(8px); border:1px solid rgba(255,255,255,.25);
+  }
+  .ind-icon{
+    position:absolute; top: calc(14% + 10px); right: calc(14% + 10px); font-size:1.7rem; z-index:2;
+  }
+  .ind-body{
+    position:absolute; left:20px; right:20px; bottom:20px; color:white; z-index:2;
+  }
+  .ind-body h3{ color:white; font-size: 1.1rem; font-weight:700; margin-bottom:6px;}
+  .ind-body p{ font-size:.82rem; opacity:.88; }
+
+  .ind-cta{
+    grid-column: 1 / -1;
+    margin-top: 24px; text-align:center; background:white; padding:30px; border-radius: var(--radius); border:1px dashed var(--line);
+  }
+  .ind-cta h4{ font-size: 1.15rem; margin-bottom:12px;}
+  .ind-cta p{ color:var(--muted); margin-bottom:18px;}
+
+  @media (max-width: 1100px){ .industries{ grid-template-columns: repeat(3, 1fr);} }
+  @media (max-width: 900px){ .industries{ grid-template-columns: repeat(2, 1fr);} }
+  @media (max-width: 640px){ .industries{ grid-template-columns: repeat(2, 1fr);} .ind-card{ aspect-ratio: 3/4;} }
+
+  /* ============== PRODUCTO EN ACCION ============== */
+  .gallery{
+    display:grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 220px;
+    gap: 14px;
+  }
+  .g-item{
+    position:relative; overflow:hidden; border-radius: 20px;
+    background: #eef2f8; border:1px solid var(--line);
+    display:flex; align-items:flex-end;
+    transition: transform .3s ease;
+  }
+  .g-item:hover{ transform: translateY(-4px);}
+  .g-1{ grid-column: span 3; grid-row: span 2;}
+  .g-2{ grid-column: span 3; grid-row: span 1;}
+  .g-3{ grid-column: span 2; grid-row: span 1;}
+  .g-4{ grid-column: span 1; grid-row: span 2;}
+  .g-5{ grid-column: span 3; grid-row: span 1;}
+  .g-6{ grid-column: span 3; grid-row: span 2;}
+
+  .g-scene{ position:absolute; inset:0; display:grid; place-items:center; }
+  .ui-shot{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top; }
+  .ui-shot.contain{ object-fit:contain; padding:18px; }
+  .ui-shot.top{ object-position: center top;}
+  .g-caption{
+    position:relative; z-index:3; margin:18px; padding: 8px 14px; border-radius:10px;
+    background: rgba(255,255,255,.9); backdrop-filter: blur(6px);
+    color:var(--ink); font-size:.82rem; font-weight:600;
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    letter-spacing:-.01em;
+  }
+
+  /* scene backgrounds — restaurant, counter, etc. */
+  .scene-wall{      background: linear-gradient(175deg, #e8eef5 0%, #cfd8e3 100%);}
+  .scene-counter{   background: linear-gradient(175deg, #f3ebe0 0%, #d3b88e 100%);}
+  .scene-restaurant{background: linear-gradient(175deg, #1b2030 0%, #2a3145 100%);}
+  .scene-shop{      background: linear-gradient(175deg, #f8efe6 0%, #e0c8ae 100%);}
+  .scene-hand{      background: linear-gradient(175deg, #fde6d6 0%, #f4b28e 100%);}
+  .scene-screen{    background: linear-gradient(175deg, #0ea5e9 0%, #3B5BDB 100%);}
+
+  /* mini tablet */
+  .mini-tablet{
+    width: 62%; max-width: 260px; aspect-ratio: 3/4;
+    background:white; border-radius: 18px; padding: 10px;
+    box-shadow: 0 18px 40px -16px rgba(15,23,42,.5);
+    border: 2px solid #e6e9ef;
+  }
+  .mini-tablet .screen{
+    height:100%; border-radius: 12px; background: linear-gradient(180deg,#f6faff,#fff);
+    display:flex; flex-direction:column; justify-content:space-between; padding: 12px;
+    border: 1px solid #eef1f6;
+  }
+  .mini-tablet .mini-brand{ font-size:.68rem; font-weight:800; color:var(--ink); text-align:center;}
+  .mini-tablet .mini-brand span{ color:var(--green);}
+  .mini-tablet .mini-emojis{
+    display:grid; grid-template-columns: repeat(4,1fr); gap:5px; font-size:1.3rem; text-align:center;
+  }
+  .mini-tablet .mini-emojis span{ aspect-ratio:1; background:#f6f8fb; border-radius:8px; display:grid; place-items:center;}
+
+  /* QR placard */
+  .qr-card{
+    width: 60%; max-width: 200px; aspect-ratio: 3/4; background:white; border-radius: 14px;
+    padding: 14px; box-shadow: 0 12px 28px -10px rgba(15,23,42,.3);
+    display:flex; flex-direction:column; align-items:center; justify-content:space-between;
+  }
+  .qr-card .top{ font-weight:800; color:var(--ink); font-size:.8rem; text-align:center;}
+  .qr-card .top span{ color:var(--green);}
+  .qr-box{
+    width:70%; aspect-ratio:1; background:
+      conic-gradient(from 0deg, #0B1220 25%, white 0 50%, #0B1220 0 75%, white 0),
+      #0B1220;
+    background-size: 14% 14%;
+    background-position: 0 0;
+    border-radius: 6px;
+    position:relative;
+    background:
+      radial-gradient(circle at 14% 14%, #0B1220 8%, transparent 9%),
+      radial-gradient(circle at 86% 14%, #0B1220 8%, transparent 9%),
+      radial-gradient(circle at 14% 86%, #0B1220 8%, transparent 9%),
+      repeating-conic-gradient(from 0deg at 50% 50%, #0B1220 0 25%, white 0 50%),
+      white;
+    background-size: 100% 100%, 100% 100%, 100% 100%, 18% 18%, 100% 100%;
+  }
+  .qr-card .bot{ font-size:.7rem; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.05em;}
+
+  /* phone scanning */
+  .phone{
+    width: 130px; aspect-ratio: 9/19; background: #0B1220; border-radius: 22px; padding:6px;
+    box-shadow: 0 16px 40px -14px rgba(0,0,0,.6);
+    border:1px solid #1a2234;
+    transform: rotate(-8deg);
+  }
+  .phone .ps{
+    height:100%; border-radius:18px; background: linear-gradient(180deg, #22C55E22, #3B5BDB22), white;
+    display:flex; align-items:center; justify-content:center; font-size:1.5rem;
+  }
+
+  /* big screen */
+  .big-emojis{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 14px; width: 72%; max-width: 420px;
+  }
+  .big-emojis span{
+    aspect-ratio:1; background: rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.25); border-radius:16px;
+    display:grid; place-items:center; font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    backdrop-filter: blur(6px);
+  }
+
+  @media (max-width:900px){
+    .gallery{ grid-template-columns: repeat(4,1fr); grid-auto-rows: 180px;}
+    .g-1{ grid-column: span 4; grid-row: span 2;}
+    .g-2,.g-5,.g-6{ grid-column: span 4;}
+    .g-3{ grid-column: span 2;}
+    .g-4{ grid-column: span 2; grid-row: span 1;}
+    .g-6{ grid-row: span 2;}
+  }
+  @media (max-width:600px){
+    .gallery{ grid-template-columns: 1fr; grid-auto-rows: 220px;}
+    .g-1,.g-2,.g-3,.g-4,.g-5,.g-6{ grid-column: span 1; grid-row: span 1;}
+    .g-1, .g-6{ grid-row: span 1;}
+  }
+
+  /* ============== PLATAFORMA / DASHBOARD ============== */
+  .dash-wrap{
+    background: var(--ink); color: white; border-radius: var(--radius-lg);
+    padding: 44px; margin-top: 40px;
+    background: radial-gradient(120% 120% at 0% 0%, #1a2234 0%, #0B1220 100%);
+    position:relative; overflow:hidden;
+  }
+  .dash-wrap::before{
+    content:""; position:absolute; top:-40%; right:-20%; width:600px; height:600px;
+    background: radial-gradient(circle, rgba(59,91,219,.3), transparent 60%); pointer-events:none;
+  }
+  .dash-tabs{
+    display:flex; gap: 6px; flex-wrap:wrap; margin-bottom: 34px; position:relative; z-index:2;
+  }
+  .dash-tab{
+    padding: 11px 18px; border-radius: 12px; background: rgba(255,255,255,.06); color:rgba(255,255,255,.7);
+    font-size:.85rem; font-weight:600; border:1px solid rgba(255,255,255,.08);
+    transition: all .25s ease; display:inline-flex; align-items:center;
+  }
+  .dash-tab:hover{ background: rgba(255,255,255,.12); color:white; }
+  .dash-tab.active{
+    background: white; color:var(--ink); box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  }
+  .dash-panel{
+    display:grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items:center; position:relative; z-index:2;
+  }
+  .dash-panel h3{ color:white; font-size: clamp(1.3rem, 2vw, 1.65rem); margin-bottom: 14px; letter-spacing:-.02em; line-height:1.25;}
+  .dash-panel p{ color: rgba(255,255,255,.7); font-size:.98rem; line-height:1.65;}
+  .dash-bullets{ display:flex; flex-direction:column; gap:10px; margin-top:20px;}
+  .dash-bullets li{ display:flex; gap:10px; align-items:flex-start; font-size:.92rem; color: rgba(255,255,255,.88); list-style:none;}
+  .dash-bullets li::before{ content:"✓"; color: var(--green); font-weight:700; flex-shrink:0;}
+
+  .dash-mock{
+    background: white; color: var(--ink); border-radius: 18px; padding: 24px;
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,.5);
+    min-height: 360px;
+    overflow:hidden;
+  }
+  .dash-mock img{ border-radius: 12px; }
+
+  /* Dash mock: score */
+  .mock-score{ display:grid; grid-template-columns: auto 1fr; gap:24px; align-items:center; }
+  .gauge{
+    width:150px; height:150px; border-radius:50%;
+    background: conic-gradient(var(--green) 0 94%, #eef2f8 94% 100%);
+    display:grid; place-items:center;
+    position:relative;
+  }
+  .gauge::after{
+    content:""; position:absolute; inset:12px; background:white; border-radius:50%;
+  }
+  .gauge b{ position:relative; z-index:2; font-size:1.8rem; font-weight:800; letter-spacing:-.02em;}
+  .gauge b small{ font-weight:500; color:var(--muted); font-size:.9rem;}
+  .mock-score .info h4{ font-size:1rem; margin-bottom:6px;}
+  .mock-score .info p{ color:var(--muted); font-size:.88rem;}
+  .mock-score .chips{ display:flex; gap:6px; margin-top:10px; flex-wrap:wrap;}
+  .chip{ padding:4px 10px; border-radius:999px; font-size:.75rem; font-weight:600; background:#f1fdf5; color:#0e5b2e;}
+  .chip.blue{ background:#eef2fe; color:var(--blue);}
+  .chip.amber{ background:#fff7ed; color:#b45309;}
+
+  /* Dash mock: evolution */
+  .mock-evo h4{ font-size:1rem; margin-bottom:6px;}
+  .mock-evo .muted{ color:var(--muted); font-size:.85rem; margin-bottom:16px;}
+  .chart{ height: 200px; position:relative; border-left:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .chart svg{ width:100%; height:100%;}
+  .chart-labels{ display:flex; justify-content:space-between; margin-top: 6px; color:var(--muted); font-size:.72rem;}
+
+  /* Dash mock: alerts */
+  .mock-alerts{ display:flex; flex-direction:column; gap:10px;}
+  .alert-item{
+    display:flex; gap:14px; padding:14px; border-radius: 14px;
+    background: #fff7ed; border:1px solid #fde8c6;
+  }
+  .alert-item .i{ width:36px; height:36px; border-radius:10px; background:white; display:grid; place-items:center; font-size:1.1rem;}
+  .alert-item b{ display:block; font-size:.95rem;}
+  .alert-item span{ color:var(--muted); font-size:.82rem;}
+  .alert-item.blue{ background:#eef2fe; border-color:#d5dffb;}
+  .alert-item.red{ background:#fff1f2; border-color:#fecaca;}
+
+  /* Dash mock: comments */
+  .mock-comments{ display:flex; flex-direction:column; gap:12px;}
+  .cmt{
+    display:flex; gap:12px; padding:14px; border-radius:14px; background:#f6f8fb;
+  }
+  .cmt .em{ width:40px; height:40px; border-radius:12px; background:white; display:grid; place-items:center; font-size:1.4rem; flex-shrink:0;}
+  .cmt b{ font-size:.88rem; display:block; margin-bottom:2px;}
+  .cmt span{ color:var(--muted); font-size:.85rem;}
+
+  /* Dash mock: ranking */
+  .mock-rank table{ width:100%; border-collapse:collapse; font-size:.9rem;}
+  .mock-rank th, .mock-rank td{ padding:12px 8px; border-bottom:1px solid var(--line); text-align:left;}
+  .mock-rank th{ color:var(--muted); font-weight:500; font-size:.78rem; text-transform:uppercase; letter-spacing:.05em;}
+  .mock-rank td b{ display:inline-flex; align-items:center; gap:8px;}
+  .mock-rank td b::before{ content:""; width:28px; height:28px; border-radius:50%; background:var(--gradient);}
+  .rank-bar{ display:inline-block; height:8px; border-radius:4px; background:var(--green); vertical-align:middle;}
+  .rank-bar.amber{ background:#f59e0b;}
+  .rank-bar.red{ background:#ef4444;}
+
+  @media (max-width:900px){
+    .dash-wrap{ padding: 28px;}
+    .dash-panel{ grid-template-columns:1fr; gap:24px;}
+  }
+
+  /* ============== COMO OBTENER ============== */
+  .timeline{
+    max-width: 700px; margin: 0 auto; position:relative;
+  }
+  .timeline::before{
+    content:""; position:absolute; left:30px; top:0; bottom:0; width:2px;
+    background: linear-gradient(180deg, var(--green), var(--blue));
+  }
+  .tl-item{
+    position:relative; padding-left: 80px; padding-bottom: 34px;
+  }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-num{
+    position:absolute; left:0; top:0; width:62px; height:62px; border-radius:50%;
+    background:white; border: 2px solid #e6e9ef;
+    display:grid; place-items:center; font-weight:800; font-size:1.2rem; color:var(--blue);
+    z-index:2;
+  }
+  .tl-item h3{ font-size:1.15rem; margin-bottom:6px;}
+  .tl-item p{ color:var(--muted);}
+
+  /* ============== FAQ ============== */
+  .faq-list{ max-width: 780px; margin: 0 auto; display:flex; flex-direction:column; gap:12px;}
+  .faq-item{
+    background:white; border:1px solid var(--line); border-radius: 16px; overflow:hidden;
+    transition: border-color .25s ease, box-shadow .25s ease;
+  }
+  .faq-item.open{ border-color: rgba(59,91,219,.3); box-shadow: var(--shadow-sm);}
+  .faq-q{
+    width:100%; padding: 24px 28px; background:transparent; text-align:left;
+    display:flex; justify-content:space-between; align-items:center; gap: 16px;
+    font-size:1.02rem; font-weight:600; color:var(--ink);
+  }
+  .faq-q:hover{ color: var(--blue);}
+  .faq-icon{
+    width:32px; height:32px; border-radius:50%; background:#f1f4f9;
+    display:grid; place-items:center; flex-shrink:0; transition: transform .3s ease, background .3s ease, color .3s ease;
+    color:var(--ink);
+  }
+  .faq-item.open .faq-icon{
+    transform: rotate(45deg); background: var(--gradient); color:white;
+  }
+  .faq-a{
+    max-height:0; overflow:hidden; transition: max-height .35s ease;
+  }
+  .faq-a-inner{
+    padding: 0 24px 22px; color: var(--muted); font-size:.98rem; line-height:1.6;
+  }
+
+  /* ============== CTA FINAL ============== */
+  .cta-final{
+    padding: clamp(60px, 8vw, 100px) 0;
+    background: var(--gradient);
+    color:white; text-align:center; position:relative; overflow:hidden;
+  }
+  .cta-final::before{
+    content:""; position:absolute; inset:0; background:
+      radial-gradient(60% 60% at 20% 20%, rgba(255,255,255,.18), transparent 60%),
+      radial-gradient(50% 50% at 80% 80%, rgba(255,255,255,.12), transparent 60%);
+  }
+  .cta-final h2{ color:white; font-size: clamp(2.2rem, 4.5vw, 3.5rem); position:relative; z-index:2;}
+  .cta-final p.sub{ color:rgba(255,255,255,.85); font-size:1.1rem; margin-top:18px; max-width:640px; margin-inline:auto; position:relative; z-index:2;}
+  .cta-final .btn{ margin-top:34px; position:relative; z-index:2; background:white; color:var(--ink); padding: 20px 32px; font-size:1.08rem;}
+  .cta-final .btn:hover{ background:#f6f8fb;}
+  .cta-final .ig{ margin-top: 18px; position:relative; z-index:2; color:rgba(255,255,255,.9); font-size:.95rem; display:inline-flex; align-items:center; gap:8px;}
+  .cta-final .ig:hover{ color:white; text-decoration:underline;}
+
+  /* ============== FOOTER ============== */
+  .footer{
+    padding: 50px 0 28px; background: var(--ink); color: rgba(255,255,255,.72);
+  }
+  .footer-grid{
+    display:grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap:40px; margin-bottom: 40px;
+  }
+  .footer-grid h4{ color:white; font-size:.95rem; margin-bottom:14px; font-weight:700;}
+  .footer-grid a{ display:block; padding: 6px 0; font-size:.92rem; color: rgba(255,255,255,.7);}
+  .footer-grid a:hover{ color:white;}
+  .footer .logo{ color:white; margin-bottom: 14px; }
+  .footer p.desc{ color:rgba(255,255,255,.6); font-size:.92rem; max-width:340px;}
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,.1); padding-top:20px;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+    color: rgba(255,255,255,.5); font-size:.85rem;
+  }
+  @media (max-width:800px){ .footer-grid{ grid-template-columns:1fr 1fr; } }
+
+  /* ============== WHATSAPP FAB ============== */
+  .wa-fab{
+    position:fixed; bottom:24px; right:24px; width:62px; height:62px; border-radius:50%;
+    background:#25D366; color:white; display:grid; place-items:center;
+    box-shadow: 0 16px 30px -8px rgba(37,211,102,.5); z-index:90;
+    transition: transform .25s ease;
+    animation: pulseWa 2.5s ease-in-out infinite;
+  }
+  .wa-fab:hover{ transform: scale(1.08);}
+  .wa-fab svg{ width:30px; height:30px;}
+  @keyframes pulseWa{
+    0%,100%{ box-shadow: 0 16px 30px -8px rgba(37,211,102,.5), 0 0 0 0 rgba(37,211,102,.4);}
+    50%{ box-shadow: 0 16px 30px -8px rgba(37,211,102,.5), 0 0 0 14px rgba(37,211,102,0);}
+  }
+
+  
+
+  /* ═══ TABLET MOCKUP SIMULATOR ═══ */
+  .sim-stage {
+    position: relative; max-width: 560px; margin: 0 auto;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .tablet-frame {
+    width: 100%; max-width: 420px;
+    background: #1a1f2e;
+    border-radius: 36px;
+    padding: 18px 16px 28px;
+    box-shadow:
+      0 60px 120px -30px rgba(15,23,42,.55),
+      0 24px 48px -16px rgba(15,23,42,.35),
+      0 0 0 1px rgba(255,255,255,.08),
+      inset 0 1px 0 rgba(255,255,255,.12);
+    transform: perspective(1200px) rotateX(3deg);
+    transition: transform .5s ease;
+    position: relative;
+  }
+  .tablet-frame:hover { transform: perspective(1200px) rotateX(1deg); }
+  .tablet-frame::before {
+    content: ""; position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+    width: 60px; height: 5px; background: #2d3347; border-radius: 3px;
+  }
+  .tablet-frame::after {
+    content: ""; position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+    width: 36px; height: 5px; background: #2d3347; border-radius: 3px;
+  }
+  .tablet-inner {
+    background: white; border-radius: 22px; overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.08);
+    min-height: 360px; display: flex; flex-direction: column;
+    filter: blur(3px); transition: filter .4s ease;
+  }
+  .tablet-inner.active { filter: none; }
+  .tablet-screen-bar {
+    background: linear-gradient(135deg, var(--green) 0%, var(--blue) 100%);
+    padding: 12px 20px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .tablet-screen-bar .tb-brand { font-weight:800; color:white; font-size:.95rem; letter-spacing:-.02em; }
+  .tablet-screen-bar .tb-brand span { opacity:.75; }
+  .tablet-screen-bar .tb-live {
+    display:inline-flex; align-items:center; gap:5px; background:rgba(255,255,255,.2);
+    padding:3px 10px; border-radius:999px; font-size:.72rem; font-weight:600; color:white;
+  }
+  .tablet-screen-bar .tb-live i {
+    width:6px; height:6px; border-radius:50%; background:#a8f5c8; display:inline-block; animation:pulse 1.5s infinite;
+  }
+  .tablet-content { flex:1; padding: 28px 24px 20px; display:flex; flex-direction:column; justify-content:center; }
+
+  /* Floating CTA button */
+  .sim-fab {
+    position: absolute; bottom: -22px; left: 50%; transform: translateX(-50%);
+    background: var(--green); color: white;
+    padding: 16px 32px; border-radius: 999px; border: none;
+    font-family: inherit; font-size: 1rem; font-weight: 700; cursor: pointer;
+    box-shadow: 0 16px 32px -8px rgba(34,197,94,.6), 0 0 0 4px rgba(34,197,94,.15);
+    display: inline-flex; align-items: center; gap: 10px;
+    transition: transform .25s ease, box-shadow .25s ease;
+    white-space: nowrap; z-index: 10;
+    animation: fabPulse 2.5s ease-in-out infinite;
+  }
+  .sim-fab:hover { transform: translateX(-50%) translateY(-3px); box-shadow: 0 20px 36px -8px rgba(34,197,94,.7), 0 0 0 6px rgba(34,197,94,.12); }
+  .sim-fab svg { width:20px; height:20px; flex-shrink:0; }
+  @keyframes fabPulse {
+    0%,100%{ box-shadow: 0 16px 32px -8px rgba(34,197,94,.6), 0 0 0 4px rgba(34,197,94,.15); }
+    50%{ box-shadow: 0 16px 32px -8px rgba(34,197,94,.6), 0 0 0 10px rgba(34,197,94,0); }
+  }
+
+  /* Modal overlay */
+  .sim-overlay {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(11,18,32,.7); backdrop-filter: blur(6px);
+    align-items: center; justify-content: center; padding: 20px;
+  }
+  .sim-overlay.open { display: flex; }
+  .sim-modal {
+    width: 100%; max-width: 460px; background: #1a1f2e;
+    border-radius: 40px; padding: 20px 18px 30px;
+    box-shadow:
+      0 80px 160px -40px rgba(0,0,0,.8),
+      0 0 0 1px rgba(255,255,255,.1),
+      inset 0 1px 0 rgba(255,255,255,.12);
+    animation: modalIn .4s cubic-bezier(.2,.9,.3,1.1) both;
+    position: relative;
+  }
+  @keyframes modalIn { from{ opacity:0; transform:scale(.88) translateY(20px);} to{ opacity:1; transform:scale(1) translateY(0);} }
+  .sim-modal::before {
+    content: ""; position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+    width: 60px; height: 5px; background: #2d3347; border-radius: 3px;
+  }
+  .sim-modal::after {
+    content: ""; position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+    width: 36px; height: 5px; background: #2d3347; border-radius: 3px;
+  }
+  .sim-modal-inner {
+    background: white; border-radius: 24px; overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.08);
+  }
+  .sim-close {
+    position: absolute; top: -14px; right: 16px;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: white; border: none; cursor: pointer;
+    display: grid; place-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,.3);
+    font-size: 1.1rem; color: var(--ink); z-index:2;
+    transition: transform .2s ease;
+  }
+  .sim-close:hover { transform: scale(1.1); }
+
+  .demo-step{ display:none; width:100%; text-align:center;
+    animation: demoFadeIn .4s ease both;
+  }
+  .demo-step.active{ display:block; }
+  @keyframes demoFadeIn{ from{ opacity:0; transform:translateY(12px);} to{ opacity:1; transform:translateY(0);} }
+
+  .demo-q{ font-size: 1.35rem; font-weight:700; letter-spacing:-.02em; margin-bottom:8px; }
+  .demo-hint{ color:var(--muted); font-size:.9rem; margin-bottom:18px; }
+
+  .demo-emojis{
+    display:grid; grid-template-columns: repeat(4,1fr); gap:12px; margin-top:12px;
+  }
+  .demo-emoji{
+    background:transparent; border:none; padding:12px 6px; border-radius:18px;
+    cursor:pointer; transition: transform .2s ease, background .2s ease;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+  }
+  .demo-emoji img{ width:64px; height:64px; object-fit:contain; }
+  .demo-emoji span{ font-size:.78rem; font-weight:600; color:var(--muted); }
+  .demo-emoji:hover{ transform:scale(1.1); background:rgba(34,197,94,.06); }
+  .demo-emoji:active{ transform:scale(.95); }
+
+  .demo-options{ display:flex; flex-direction:column; gap:10px; text-align:left; }
+  .demo-option{
+    width:100%; padding:16px 20px; background:white; border:1px solid var(--line);
+    border-radius:14px; font-size:.95rem; font-weight:500; color:var(--ink);
+    cursor:pointer; transition: border-color .2s, background .2s, transform .15s;
+    text-align:left;
+  }
+  .demo-option:hover{ border-color:var(--green); background:#f8fdf9; transform:translateX(4px); }
+
+  .demo-skip{
+    background:transparent; color:var(--muted); font-size:.88rem; font-weight:600;
+    padding:10px 16px; margin-top:16px; cursor:pointer;
+    transition: color .2s;
+  }
+  .demo-skip:hover{ color:var(--ink); }
+
+  .demo-textarea{
+    width:100%; padding:16px; border:1px solid var(--line); border-radius:14px;
+    font-family:inherit; font-size:.95rem; resize:vertical; min-height:100px;
+    transition: border-color .2s;
+  }
+  .demo-textarea:focus{ outline:none; border-color:var(--blue); }
+  .demo-counter{ text-align:left; font-size:.78rem; color:var(--muted); margin-top:6px; }
+
+  .demo-actions{
+    display:flex; align-items:center; justify-content:flex-end; gap:12px; margin-top:16px;
+  }
+  .demo-btn-send{
+    padding:12px 28px; background:var(--ink); color:white; border-radius:12px;
+    font-size:.95rem; font-weight:600; cursor:pointer;
+    transition: background .2s, transform .15s;
+  }
+  .demo-btn-send:hover{ background:var(--ink-2); transform:translateY(-1px); }
+
+  .demo-thanks{ text-align:center; }
+  .demo-check-circle{
+    width:80px; height:80px; border-radius:50%; background:#f0fdf4;
+    display:inline-grid; place-items:center;
+    animation: popIn .5s cubic-bezier(.2,.9,.3,1.3) both;
+  }
+  @keyframes popIn{ from{ transform:scale(0);} to{ transform:scale(1);} }
+  .demo-brand-mark{
+    display:flex; align-items:center; justify-content:center; gap:4px; margin-top:20px;
+  }
+  .demo-restart{
+    margin-top:18px; background:transparent; color:var(--blue); font-size:.88rem;
+    font-weight:600; padding:8px 16px; cursor:pointer; border-radius:8px;
+    transition: background .2s;
+  }
+  .demo-restart:hover{ background:#eef2fe; }
+
+  .demo-progress{
+    height:4px; background:#eef2f8;
+  }
+  .demo-progress-bar{
+    height:100%; width:25%; background:var(--gradient);
+    transition: width .4s ease;
+    border-radius:0 2px 2px 0;
+  }
+
+  @media (max-width:540px){
+    .demo-screen{ padding:28px 20px 22px; min-height:300px; }
+    .demo-emoji img{ width:50px; height:50px; }
+    .demo-q{ font-size:1.15rem; }
+  }
+
+
+    /* ============== REVEAL ANIM ============== */
+  .reveal{ opacity:0; transform: translateY(20px); transition: opacity .7s cubic-bezier(.2,.8,.3,1), transform .7s cubic-bezier(.2,.8,.3,1); }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+  .reveal.d1{ transition-delay:.08s;}
+  .reveal.d2{ transition-delay:.16s;}
+  .reveal.d3{ transition-delay:.24s;}
+  .reveal.d4{ transition-delay:.32s;}
+
+  /* ============== REAL PHOTOS GRID ============== */
+  .real-grid{
+    display:grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 260px;
+    gap: 16px; margin-top: 0;
+  }
+  .rp{
+    margin:0; position:relative; border-radius: 20px; overflow:hidden;
+    background: #eef2f8; border:1px solid var(--line);
+    transition: transform .3s ease;
+  }
+  .rp:hover{ transform: translateY(-4px); }
+  .rp img{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+  .rp-1{ grid-column: span 2; grid-row: span 2; }
+  .rp-5{ grid-column: span 2; }
+  .rp figcaption{
+    position:absolute; bottom:0; left:0; right:0;
+    padding: 14px 20px; font-size:.85rem; font-weight:600; color:white;
+    background: linear-gradient(transparent, rgba(11,18,32,.7));
+  }
+  @media (max-width:900px){
+    .real-grid{ grid-template-columns: repeat(2, 1fr); grid-auto-rows: 220px; }
+    .rp-1{ grid-column: span 2; grid-row: span 1; }
+    .rp-5{ grid-column: span 2; }
+  }
+  @media (max-width:540px){
+    .real-grid{ grid-template-columns: 1fr; grid-auto-rows: 240px; }
+    .rp-1, .rp-5{ grid-column: span 1; }
+  }
+
+  /* Social proof responsive */
+  @media (max-width:640px){
+    section .wrap > div[style*="grid-template-columns: repeat(3"]{ grid-template-columns:1fr !important; gap:16px !important; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{ animation:none !important; transition:none !important;}
+    .reveal{ opacity:1; transform:none;}
+  }
+
+
+  /* ═══ READING PROGRESS BAR ═══ */
+  .prog-wrap {
+    position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 200; pointer-events: none;
+  }
+  #prog-bar {
+    height: 100%; width: 0%;
+    background: var(--gradient);
+    transition: width .1s linear;
+    border-radius: 0 2px 2px 0;
+  }
+
+  /* ═══ DASHBOARD TAB: gradient underline on active ═══ */
+  .dash-tab { position: relative; }
+  .dash-tab.active::after {
+    content: "";
+    position: absolute; bottom: -2px; left: 16px; right: 16px; height: 3px;
+    background: var(--gradient); border-radius: 2px;
+  }
+
+  /* ═══ STEP: bigger number when no visual ═══ */
+  .step-num {
+    width: 48px; height: 48px; font-size: 1.2rem; margin-bottom: 16px;
+  }
+
+  /* ═══ INDUSTRIES 3-col: taller card ratio ═══ */
+  @media (min-width: 901px) {
+    .ind-card { aspect-ratio: 3/4; }
+  }
+
+  /* ═══ SCROLL-TO-TOP nudge in nav when scrolled ═══ */
+  .nav.scrolled .nav-cta .btn-primary {
+    animation: none;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ============== NAVBAR ============== -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="logo" aria-label="DeDiez home">
+      <img src="assets/logo-full.png" alt="DeDiez">
+    </a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="#que-es">Qué es</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#soluciones">Soluciones</a>
+      <a href="#plataforma">Plataforma</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="https://wa.me/5492996214738?text=Hola%20DeDiez%2C%20quiero%20saber%20m%C3%A1s" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 3.6 17l-1.1 4a.8.8 0 0 0 1 1l4.1-1a11 11 0 0 0 12.9-17.5zM12 20a8 8 0 0 1-4.1-1.1l-.3-.2-2.4.6.7-2.3-.2-.3a8 8 0 1 1 6.3 3.3zm4.5-5.9c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5 0a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.3-.4.7-1.2.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.5-.6-.5h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-1 2.3c0 1.3 1 2.6 1.1 2.7s2 3 4.7 4.2c1.7.7 2.3.7 3.1.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.1-.4-.2z"/></svg>
+        Contactanos
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#que-es">Qué es</a>
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#soluciones">Soluciones</a>
+    <a href="#plataforma">Plataforma</a>
+    <a href="#faq">FAQ</a>
+    <a class="btn btn-primary" href="https://wa.me/5492996214738" target="_blank" rel="noopener">Contactanos por WhatsApp</a>
+  </div>
+</header>
+
+<div class="prog-wrap" aria-hidden="true"><div id="prog-bar"></div></div>
+<a id="top"></a>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal in">
+      <span class="eyebrow"><span class="dot"></span>Medición de experiencia del cliente</span>
+      <h1 style="margin-top:18px;">
+        La experiencia del cliente<br>no se adivina. <span class="grad-text">Se mide.</span>
+      </h1>
+      <p class="lead">
+        DeDiez captura la opinión de cada cliente en el momento — con terminales táctiles o códigos QR. Datos en tiempo real para tomar mejores decisiones.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary btn-lg" href="https://wa.me/5492996214738?text=Hola%2C%20quiero%20una%20demo%20de%20DeDiez" target="_blank" rel="noopener">
+          Quiero una demo
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a class="btn btn-outline btn-lg" href="#como-funciona">Ver cómo funciona</a>
+      </div>
+      <div class="hero-meta">
+        <div class="avatars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <span><strong>Negocios en Neuquén</strong> ya están midiendo su atención con DeDiez</span>
+      </div>
+      <p style="margin-top:12px; font-size:.82rem; color:var(--muted); display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+        <span style="display:inline-flex; align-items:center; gap:5px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+          Sin compromiso
+        </span>
+        <span style="display:inline-flex; align-items:center; gap:5px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+          Respondemos en minutos
+        </span>
+        <span style="display:inline-flex; align-items:center; gap:5px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+          Setup en el día
+        </span>
+      </p>
+    </div>
+
+    <div class="hero-visual reveal d2 in">
+      <div class="tablet" aria-label="Terminal DeDiez">
+        <div class="tablet-screen">
+          <div class="tablet-head">
+            <div class="brand">de<span>Diez</span></div>
+            <div>Mesa 14 · 14:32</div>
+          </div>
+          <div class="tablet-prompt">
+            <h4>¿Cómo fue tu experiencia hoy?</h4>
+            <p>Tocá una carita. Tardás 1 segundo.</p>
+            <div class="emojis" role="group" aria-label="Calificación">
+              <button class="emoji-btn" aria-label="Excelente"><img src="assets/face-excellent.png" alt=""></button>
+              <button class="emoji-btn" aria-label="Bien"><img src="assets/face-good.png" alt=""></button>
+              <button class="emoji-btn" aria-label="Regular"><img src="assets/face-regular.png" alt=""></button>
+              <button class="emoji-btn" aria-label="Mala"><img src="assets/face-bad.png" alt=""></button>
+            </div>
+          </div>
+          <div class="tablet-foot">
+            <span>Tu voto es anónimo</span>
+            <span class="pill"><i></i>En vivo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="floating-card fc1">
+        <img src="assets/face-excellent.png" alt="" style="width:34px; height:34px; object-fit:contain;">
+        <div><b>+12 clientes felices</b><br><span style="color:var(--muted); font-size:.78rem;">en la última hora</span></div>
+      </div>
+      <div class="floating-card fc2">
+        <span class="emoji">📈</span>
+        <div><b>Score 4.7/5</b><br><span style="color:var(--muted); font-size:.78rem;">↑ 0.3 esta semana</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="trust reveal d3 in">
+      <div class="stat"><b>50%</b><span>de los clientes se va tras una mala experiencia.</span></div>
+      <div class="stat"><b>1 seg</b><span>para que un cliente califique tocando una carita.</span></div>
+      <div class="stat"><b>24/7</b><span>medición automática, sin que tengas que estar.</span></div>
+      <div class="stat"><b>0 apps</b><span>Tu cliente solo toca una carita para calificar.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== QUE ES ============== -->
+<section class="block" id="que-es">
+  <div class="wrap qe-grid">
+    <div class="reveal">
+      <span class="eyebrow"><span class="dot"></span>Qué es DeDiez</span>
+      <h2 style="margin-top:14px;">No es una encuesta. <span class="grad-text">Es un sistema de mejora en vivo.</span></h2>
+      <p style="margin-top:20px; color:var(--muted); font-size:1.05rem;">
+        Un cliente insatisfecho no se queja: se va, no vuelve, y se lo cuenta a otros. Perdés sin enterarte — y sin datos para cambiarlo.
+      </p>
+      <div class="problem" style="margin-top:22px;">
+        ❌ Hoy: te enterás que algo salió mal cuando el cliente ya no vuelve.
+      </div>
+      <div class="solution">
+        ✅ Con DeDiez: cada experiencia queda capturada al instante. Actuás antes de perder al cliente.
+      </div>
+    </div>
+
+    <div class="benefits reveal d2">
+      <div class="benefit">
+        <div class="ico">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        </div>
+        <h4>Medí en tiempo real</h4>
+        <p>Cada calificación llega al instante a tu panel. Nada de planillas ni esperas.</p>
+      </div>
+      <div class="benefit">
+        <div class="ico">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.6a2 2 0 0 1 3.4 0l8 13.3a2 2 0 0 1-1.7 3H4a2 2 0 0 1-1.7-3z"/><path d="M12 9v4M12 17h.01"/></svg>
+        </div>
+        <h4>Detectá problemas al instante</h4>
+        <p>Alertas cuando baja la satisfacción. Resolvés antes de perder al cliente.</p>
+      </div>
+      <div class="benefit">
+        <div class="ico">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20h5v-2a4 4 0 0 0-4-4h-1"/><path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path d="M2 20v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/></svg>
+        </div>
+        <h4>Motivá a tu equipo</h4>
+        <p>Ranking transparente por turno y por empleado. El esfuerzo se ve y se premia.</p>
+      </div>
+      <div class="benefit">
+        <div class="ico">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6.5.9-4.7 4.6 1.1 6.5L12 17l-5.9 3 1.1-6.5L2.5 8.9 9 8z"/></svg>
+        </div>
+        <h4>Generá reseñas positivas</h4>
+        <p>Los clientes felices son redirigidos a Google. Mejor reputación, automática.</p>
+        <div style="margin-top:10px; display:flex; align-items:center; gap:6px; opacity:.7;">
+          <svg viewBox="0 0 24 24" width="16" height="16">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          <span style="font-size:.75rem; font-weight:600; color:var(--muted);">Integración con Google Reseñas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== COMO FUNCIONA ============== -->
+<section class="block bg-light" id="como-funciona">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Cómo funciona</span>
+      <h2 style="margin-top:14px;">Cuatro pasos. <span class="grad-text">Cero fricción.</span></h2>
+      <p class="sub">Así va de un toque del cliente a una decisión en tu tablero.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal d1">
+        <div class="step-num">1</div>
+        <h3>Tu cliente ve la terminal o cartel QR</h3>
+        <p>Sin apps ni formularios. Responden porque es rapidísimo.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="step-num">2</div>
+        <h3>Puede ampliar su opinión</h3>
+        <p>Opcional. El que quiere contar más, lo hace.</p>
+      </div>
+      <div class="step reveal d3">
+        <div class="step-num">3</div>
+        <h3>Todo llega a tu dashboard</h3>
+        <p>Desde el celular, en tiempo real.</p>
+      </div>
+      <div class="step reveal d4">
+        <div class="step-num">4</div>
+        <h3>Clientes felices → Reseñas Google</h3>
+        <p>Tu reputación en Google crece sin pedirlo.</p>
+        <div style="margin-top:12px; display:inline-flex; align-items:center; gap:6px; padding:6px 12px; background:#f6f8fb; border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="18" height="18">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          <span style="font-size:.78rem; font-weight:600; color:var(--muted);">Google Reseñas</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="after-steps reveal">
+      <a class="btn btn-grad btn-lg" href="https://wa.me/5492996214738?text=Quiero%20ver%20DeDiez%20en%20acci%C3%B3n" target="_blank" rel="noopener">
+        ¿Querés verlo en acción? → Pedí tu demo
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============== SIMULADOR INTERACTIVO ============== -->
+<section class="block" id="pruebalo" style="background: linear-gradient(180deg, var(--bg-2) 0%, #eef2fb 100%); padding-bottom: 100px;">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Demo interactiva</span>
+      <h2 style="margin-top:14px;">Así ve la experiencia <span class="grad-text">tu cliente.</span></h2>
+      <p class="sub">Un toque, una opinión, cero fricción. Exactamente lo que verían en tu local.</p>
+    </div>
+
+    <!-- Tablet mockup stage -->
+    <div class="sim-stage reveal d1">
+      <div class="tablet-frame">
+        <div class="tablet-inner" id="tablet-preview">
+          <div class="tablet-screen-bar">
+            <div class="tb-brand">de<span>Diez</span></div>
+            <div class="tb-live"><i></i>En vivo</div>
+          </div>
+          <div class="tablet-content" style="text-align:center;">
+            <p style="color:var(--muted); font-size:.88rem; font-weight:600; margin-bottom:20px;">¿Cómo fue tu experiencia hoy?</p>
+            <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:16px;">
+              <div style="aspect-ratio:1; background:#f0fdf4; border-radius:16px; display:grid; place-items:center; padding:10%;">
+                <img src="assets/face-excellent.png" style="width:100%;height:100%;object-fit:contain;" alt="Excelente">
+              </div>
+              <div style="aspect-ratio:1; background:#f0fdf4; border-radius:16px; display:grid; place-items:center; padding:10%;">
+                <img src="assets/face-good.png" style="width:100%;height:100%;object-fit:contain;" alt="Bien">
+              </div>
+              <div style="aspect-ratio:1; background:#fff7ed; border-radius:16px; display:grid; place-items:center; padding:10%;">
+                <img src="assets/face-regular.png" style="width:100%;height:100%;object-fit:contain;" alt="Regular">
+              </div>
+              <div style="aspect-ratio:1; background:#fff1f2; border-radius:16px; display:grid; place-items:center; padding:10%;">
+                <img src="assets/face-bad.png" style="width:100%;height:100%;object-fit:contain;" alt="Mala">
+              </div>
+            </div>
+            <p style="color:var(--muted); font-size:.78rem;">Tocá una opción para calificar</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating CTA button -->
+      <button class="sim-fab" onclick="openSimulator()" aria-label="Abrir simulador">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Probalo vos mismo
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============== MODAL SIMULADOR ============== -->
+<div class="sim-overlay" id="sim-overlay" onclick="closeSimulatorOutside(event)">
+  <div class="sim-modal" role="dialog" aria-modal="true" aria-label="Simulador DeDiez">
+    <button class="sim-close" onclick="closeSimulator()" aria-label="Cerrar">✕</button>
+    <div class="sim-modal-inner">
+      <div class="tablet-screen-bar">
+        <div class="tb-brand">de<span>Diez</span></div>
+        <div class="tb-live"><i></i>En vivo</div>
+      </div>
+      <div class="demo-screen" id="demo-screen">
+
+        <!-- Step 1 -->
+        <div class="demo-step active" data-step="1">
+          <h4 class="demo-q">¿Cómo fue tu experiencia?</h4>
+          <p class="demo-hint">Tocá una carita. Tardás 1 segundo.</p>
+          <div class="demo-emojis">
+            <button class="demo-emoji" data-val="excelente" data-next="positive" aria-label="Excelente">
+              <img src="assets/face-excellent.png" alt=""><span>Excelente</span>
+            </button>
+            <button class="demo-emoji" data-val="bien" data-next="positive" aria-label="Bien">
+              <img src="assets/face-good.png" alt=""><span>Bien</span>
+            </button>
+            <button class="demo-emoji" data-val="regular" data-next="negative" aria-label="Regular">
+              <img src="assets/face-regular.png" alt=""><span>Regular</span>
+            </button>
+            <button class="demo-emoji" data-val="mala" data-next="negative" aria-label="Mala">
+              <img src="assets/face-bad.png" alt=""><span>Mala</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2a -->
+        <div class="demo-step" data-step="positive">
+          <h4 class="demo-q">¡Genial! ¿Qué fue lo mejor?</h4>
+          <div class="demo-options">
+            <button class="demo-option" data-goto="comment">La atención del personal</button>
+            <button class="demo-option" data-goto="comment">La rapidez del servicio</button>
+            <button class="demo-option" data-goto="comment">La calidad del producto</button>
+            <button class="demo-option" data-goto="comment">El ambiente del lugar</button>
+          </div>
+          <button class="demo-skip" data-goto="comment">Saltar</button>
+        </div>
+
+        <!-- Step 2b -->
+        <div class="demo-step" data-step="negative">
+          <h4 class="demo-q">Lamentamos escuchar eso. ¿Qué podemos mejorar?</h4>
+          <div class="demo-options">
+            <button class="demo-option" data-goto="comment">La espera fue larga</button>
+            <button class="demo-option" data-goto="comment">La atención no fue buena</button>
+            <button class="demo-option" data-goto="comment">El producto no cumplió</button>
+            <button class="demo-option" data-goto="comment">Algo más</button>
+          </div>
+          <button class="demo-skip" data-goto="comment">Saltar</button>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="demo-step" data-step="comment">
+          <h4 class="demo-q">¿Querés agregar algo más?</h4>
+          <p class="demo-hint" style="margin-bottom:14px;">Opinión abierta (opcional)</p>
+          <textarea class="demo-textarea" placeholder="Escribí tu opinión..." maxlength="1000" rows="4"></textarea>
+          <p class="demo-counter"><span id="char-count">0</span> / 1000</p>
+          <div class="demo-actions">
+            <button class="demo-skip" data-goto="thanks">Saltar</button>
+            <button class="demo-btn-send" data-goto="thanks">Enviar</button>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="demo-step" data-step="thanks">
+          <div class="demo-thanks">
+            <div class="demo-check-circle">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <h4 class="demo-q" style="margin-top:18px;">¡Gracias por tu opinión!</h4>
+            <p class="demo-hint">Tu voto fue registrado de forma anónima.</p>
+            <div class="demo-brand-mark">
+              <img src="assets/face-excellent.png" alt="" style="width:22px; height:22px;">
+              <img src="assets/face-good.png" alt="" style="width:22px; height:22px;">
+              <img src="assets/face-regular.png" alt="" style="width:22px; height:22px;">
+              <img src="assets/face-bad.png" alt="" style="width:22px; height:22px;">
+            </div>
+            <p style="font-weight:800; font-size:1rem; letter-spacing:-.02em; margin-top:6px;">de<span style="color:var(--green);">Diez</span></p>
+            <button class="demo-restart" onclick="restartDemo()">↻ Probar de nuevo</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="demo-progress"><div class="demo-progress-bar" id="demo-progress-bar"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============== SOCIAL PROOF (Ran Segall: trust after how-it-works) ============== -->
+<section style="padding:50px 0; background:white; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:32px; text-align:center;" class="reveal">
+      <div style="padding:24px;">
+        <div style="font-size:2.5rem; font-weight:900; letter-spacing:-0.03em; background:var(--gradient); -webkit-background-clip:text; background-clip:text; color:transparent;">1 seg</div>
+        <p style="color:var(--muted); font-size:.92rem; margin-top:6px;">Es lo que tarda un cliente en calificar</p>
+      </div>
+      <div style="padding:24px;">
+        <div style="font-size:2.5rem; font-weight:900; letter-spacing:-0.03em; color:var(--green);">88%</div>
+        <p style="color:var(--muted); font-size:.92rem; margin-top:6px;">Tasa promedio de votos positivos</p>
+      </div>
+      <div style="padding:24px;">
+        <div style="font-size:2.5rem; font-weight:900; letter-spacing:-0.03em; color:var(--blue);">24hs</div>
+        <p style="color:var(--muted); font-size:.92rem; margin-top:6px;">Para tener DeDiez funcionando en tu local</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SOLUCIONES POR RUBRO ============== -->
+<section class="block" id="soluciones">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Soluciones por rubro</span>
+      <h2 style="margin-top:14px;">Donde haya atención al cliente, <span class="grad-text">DeDiez encaja.</span></h2>
+      <p class="sub">Adaptamos el formato —tablet, tótem, cartel QR— al flujo real de tu negocio.</p>
+    </div>
+
+    <div class="industries">
+
+      <!-- Gastronomía — real-1.jpg -->
+      <div class="ind-card reveal d1">
+        <div class="ind-photo" style="background-image:url('assets/real-1.jpg'); background-size:cover; background-position:center;"></div>
+        <div class="ind-icon" aria-hidden="true">🍽️</div>
+        <div class="ind-body"><h3>Gastronomía</h3><p>Sabé si tus mozos atienden de diez en cada mesa.</p></div>
+      </div>
+
+      <!-- Retail — real-7.jpg (tablet en mostrador de café) -->
+      <div class="ind-card reveal d2">
+        <div class="ind-photo" style="background-image:url('assets/real-7.jpg'); background-size:cover; background-position:center;"></div>
+        <div class="ind-icon" aria-hidden="true">🛍️</div>
+        <div class="ind-body"><h3>Retail</h3><p>Medí la experiencia de compra en caja, probador y salón.</p></div>
+      </div>
+
+      <!-- Salud — real-8.jpg (consultorio dental) -->
+      <div class="ind-card reveal d3">
+        <div class="ind-photo" style="background-image:url('assets/real-8.jpg'); background-size:cover; background-position:center;"></div>
+        <div class="ind-icon" aria-hidden="true">🏥</div>
+        <div class="ind-body"><h3>Salud</h3><p>Pacientes más cuidados desde la recepción hasta el alta.</p></div>
+      </div>
+
+      <!-- Hotelería — foto real -->
+      <div class="ind-card reveal d4">
+        <div class="ind-photo" style="background-image:url('assets/real-hotel.png'); background-size:cover; background-position:center top;"></div>
+        <div class="ind-icon" aria-hidden="true">🏨</div>
+        <div class="ind-body"><h3>Hotelería y turismo</h3><p>Feedback del huésped sin esperar al check-out.</p></div>
+      </div>
+
+            <!-- Gimnasios — real-5.jpg (terminal en oficina/servicio) -->
+      <div class="ind-card reveal d2">
+        <div class="ind-photo" style="background-image:url('assets/real-5.jpg'); background-size:cover; background-position:center;"></div>
+        <div class="ind-icon" aria-hidden="true">🏋️</div>
+        <div class="ind-body"><h3>Gimnasios y deporte</h3><p>Socios contentos que renuevan y traen amigos.</p></div>
+      </div>
+
+      <!-- Estética — foto real -->
+      <div class="ind-card reveal d2">
+        <div class="ind-photo" style="background-image:url('assets/real-beauty.png'); background-size:cover; background-position:center top;"></div>
+        <div class="ind-icon" aria-hidden="true">💇</div>
+        <div class="ind-body"><h3>Estética y belleza</h3><p>Peluquerías y spas con clientes que vuelven.</p></div>
+      </div>
+
+      
+      <div class="ind-cta reveal">
+        <h4>¿Tu rubro no está en la lista?</h4>
+        <p>DeDiez se adapta a cualquier negocio donde haya atención al cliente.</p>
+        <a class="btn btn-primary" href="https://wa.me/5492996214738?text=Hola%2C%20quiero%20saber%20c%C3%B3mo%20DeDiez%20se%20adapta%20a%20mi%20negocio" target="_blank" rel="noopener">Hablemos de tu caso</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== LA PLATAFORMA ============== -->
+<section class="block" id="plataforma">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Tu centro de decisiones</span>
+      <h2 style="margin-top:14px;">Datos que te dicen <span class="grad-text">exactamente qué hacer.</span></h2>
+      <p class="sub">Un centro de decisiones en tiempo real: identificá oportunidades, reconocé al equipo con datos concretos y anticipate a los problemas antes de que impacten en tu negocio.</p>
+    </div>
+
+    <div class="dash-wrap reveal" style="background: radial-gradient(120% 120% at 0% 0%, #1a2234 0%, #0B1220 100%); border:1px solid rgba(255,255,255,.06);">
+      <div class="dash-tabs" role="tablist">
+        <button class="dash-tab active" data-tab="score" role="tab">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px; margin-right:6px;"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+          Tomá decisiones
+        </button>
+        <button class="dash-tab" data-tab="evo" role="tab">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px; margin-right:6px;"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          Descubrí patrones
+        </button>
+        <button class="dash-tab" data-tab="alerts" role="tab">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px; margin-right:6px;"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+          Anticipate
+        </button>
+        <button class="dash-tab" data-tab="comments" role="tab">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px; margin-right:6px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Escuchá al cliente
+        </button>
+        <button class="dash-tab" data-tab="rank" role="tab">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px; margin-right:6px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Potenciá tu equipo
+        </button>
+      </div>
+
+      <!-- TOMÁ DECISIONES -->
+      <div class="dash-panel" data-panel="score">
+        <div>
+          <h3>Abrís el panel y en 5 segundos sabés cómo estuvo el día.</h3>
+          <p>Un número, una tendencia, una decisión. Para dueños que no tienen tiempo pero no quieren perder el control.</p>
+          <ul class="dash-bullets">
+            <li><strong>Compará hoy vs. ayer</strong> y detectá si algo cambió.</li>
+            <li><strong>Filtrá por período</strong> para ver tendencias semanales o mensuales.</li>
+          </ul>
+        </div>
+        <div class="dash-mock" style="padding:0; overflow:hidden; border-radius:16px; box-shadow: 0 8px 32px rgba(15,23,42,.18);">
+          <img src="assets/interfaz-3.png" alt="Panel de control DeDiez" style="width:100%; display:block;" loading="lazy">
+        </div>
+      </div>
+
+      <!-- DESCUBRÍ PATRONES -->
+      <div class="dash-panel" data-panel="evo" hidden>
+        <div>
+          <h3>Detectá en qué turno baja la satisfacción y quién la sube.</h3>
+          <p>La distribución emocional te muestra qué porcentaje de tus clientes sale contento, y el ranking te dice quién está haciendo las cosas bien.</p>
+          <ul class="dash-bullets">
+            <li><strong>Identificá el turno flojo</strong> y ponelo bajo la lupa.</li>
+            <li><strong>Premiá al mejor empleado</strong> con datos objetivos, no por intuición.</li>
+          </ul>
+        </div>
+        <div class="dash-mock" style="padding:0; overflow:hidden; border-radius:16px; box-shadow: 0 8px 32px rgba(15,23,42,.18);">
+          <img src="assets/interfaz-4.png" alt="Distribución emocional y ranking" style="width:100%; display:block;" loading="lazy">
+        </div>
+      </div>
+
+      <!-- ANTICIPATE -->
+      <div class="dash-panel" data-panel="alerts" hidden>
+        <div>
+          <h3>Te avisa antes de que el problema se note en las ventas.</h3>
+          <p>DeDiez analiza tus datos y te dice qué mejoró, qué empeoró y dónde poner el ojo.</p>
+          <ul class="dash-bullets">
+            <li><strong>Recibí alertas</strong> cuando la satisfacción baja sin que vos lo pidas.</li>
+            <li><strong>Descubrí tu mejor día</strong> y replicá lo que funcionó.</li>
+          </ul>
+        </div>
+        <div class="dash-mock" style="padding:0; overflow:hidden; border-radius:16px; box-shadow: 0 8px 32px rgba(15,23,42,.18);">
+          <img src="assets/interfaz-7.png" alt="Insights automáticos DeDiez" style="width:100%; display:block;" loading="lazy">
+        </div>
+      </div>
+
+      <!-- ESCUCHÁ AL CLIENTE -->
+      <div class="dash-panel" data-panel="comments" hidden>
+        <div>
+          <h3>Leé lo que tus clientes no te dicen en la cara.</h3>
+          <p>Cada voto llega con contexto: quién atendió, con qué puntaje, desde dónde. Entendés el "por qué" detrás de cada número.</p>
+          <ul class="dash-bullets">
+            <li><strong>Detectá quejas recurrentes</strong> que de otro modo nunca verías.</li>
+            <li><strong>Encontrá elogios</strong> para compartir con tu equipo.</li>
+          </ul>
+        </div>
+        <div class="dash-mock" style="padding:0; overflow:hidden; border-radius:16px; box-shadow: 0 8px 32px rgba(15,23,42,.18);">
+          <img src="assets/interfaz-10.png" alt="Feed de opiniones en DeDiez" style="width:100%; display:block;" loading="lazy">
+        </div>
+      </div>
+
+      <!-- POTENCIÁ TU EQUIPO -->
+      <div class="dash-panel" data-panel="rank" hidden>
+        <div>
+          <h3>Que el esfuerzo de tu equipo se vea, se mida y se premie.</h3>
+          <p>Ranking transparente con score individual, votos recibidos y medallas automáticas. Tu equipo sabe dónde está parado y vos sabés a quién reconocer.</p>
+          <ul class="dash-bullets">
+            <li><strong>Creá una cultura de servicio</strong> basada en datos, no en favoritismos.</li>
+            <li><strong>Motivá con reconocimiento público</strong> — el podio se actualiza solo.</li>
+          </ul>
+        </div>
+        <div class="dash-mock" style="padding:0; overflow:hidden; border-radius:16px; box-shadow: 0 8px 32px rgba(15,23,42,.18);">
+          <img src="assets/interfaz-5.png" alt="Gestión del equipo en DeDiez" style="width:100%; display:block;" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="after-steps reveal" style="margin-top:36px;">
+      <a class="btn btn-primary btn-lg" href="https://wa.me/5492996214738?text=Quiero%20ver%20el%20dashboard%20de%20DeDiez" target="_blank" rel="noopener">
+        Quiero ver el dashboard en vivo
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== COMO OBTENER ============== -->
+<section class="block bg-light">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Cómo empezar</span>
+      <h2 style="margin-top:14px;">De la charla al tablero, <span class="grad-text">en cuestión de días.</span></h2>
+      <p class="sub">Sin formularios eternos ni contratos complicados. Humanos reales del otro lado.</p>
+    </div>
+
+    <ol class="timeline" style="padding-left:0; list-style:none;">
+      <li class="tl-item reveal d1">
+        <div class="tl-num">01</div>
+        <h3>Contactanos</h3>
+        <p>Nos escribís por WhatsApp o Instagram. Te respondemos en minutos, no en días.</p>
+      </li>
+      <li class="tl-item reveal d2">
+        <div class="tl-num">02</div>
+        <h3>Personalizamos tu plan</h3>
+        <p>Elegimos juntos el formato ideal: tablet, tótem o cartel QR, y la cantidad por local.</p>
+      </li>
+      <li class="tl-item reveal d3">
+        <div class="tl-num">03</div>
+        <h3>Instalamos DeDiez</h3>
+        <p>Configuramos todo. En minutos estás midiendo. Cero dolor de cabeza técnico.</p>
+      </li>
+      <li class="tl-item reveal d4">
+        <div class="tl-num">04</div>
+        <h3>Empezá a mejorar</h3>
+        <p>Accedé a tu dashboard y tomá decisiones con datos reales. Acompañamiento incluido.</p>
+      </li>
+    </ol>
+
+    <div class="after-steps reveal">
+      <a class="btn btn-primary btn-lg" href="https://wa.me/5492996214738?text=Quiero%20empezar%20con%20DeDiez" target="_blank" rel="noopener">
+        Empezá ahora → Escribinos
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FAQ ============== -->
+<section class="block" id="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Preguntas frecuentes</span>
+      <h2 style="margin-top:14px;">Lo que nos preguntan <span class="grad-text">antes de sumarse.</span></h2>
+      <p class="sub">¿Te queda alguna duda? Preguntanos por WhatsApp, somos rápidos.</p>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-q">¿Cómo funciona el sistema de feedback?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">DeDiez opera con dos canales complementarios. La terminal táctil es una tablet de diseño compacto que se instala en el mostrador o en la pared. El código QR se coloca donde sea más conveniente para el negocio. Ambos permiten calificaciones rápidas y encuestas personalizadas — el cliente elige cómo interactuar, y toda la información se centraliza en el mismo dashboard en tiempo real.</div></div>
+      </div>
+      <div class="faq-item"><button class="faq-q">¿Necesito internet?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Sí, WiFi común y corriente. Si se corta, la terminal guarda las respuestas y las sube cuando vuelve la conexión. Nada se pierde.</div></div>
+      </div>
+      <div class="faq-item"><button class="faq-q">¿Puedo ver los resultados desde el celular?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Sí. El dashboard de DeDiez es responsive: entrás desde tu compu, tablet o celular, y ves todo en tiempo real.</div></div>
+      </div>
+      <div class="faq-item"><button class="faq-q">¿Los clientes necesitan descargar una app?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">No. Ni app, ni registrarse, ni dar mail. Tocan una carita o escanean un QR y chau. Cero fricción.</div></div>
+      </div>
+      <div class="faq-item"><button class="faq-q">¿Qué pasa si un empleado vota para inflarse el puntaje?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Tenemos un sistema antifraude: límites por IP y dispositivo, ventanas de tiempo entre votos, detección de patrones anómalos y alertas automáticas cuando algo raro sucede. Si un empleado intenta inflar, lo ves enseguida.</div></div>
+      </div>
+      <div class="faq-item"><button class="faq-q">¿Tiene costo mensual?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Sí, funcionamos con un plan mensual que incluye los equipos, el dashboard, el soporte y las actualizaciones. El precio depende de la cantidad de terminales y locales. Te armamos una propuesta personalizada sin compromiso.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA FINAL ============== -->
+<section class="cta-final">
+  <div class="wrap">
+    <h2 class="reveal">La buena atención se nota.<br>Con DeDiez, <span style="color:white;">también se mide.</span></h2>
+    <p class="sub reveal d1">Sumate a los negocios que ya están convirtiendo la atención en su mayor ventaja competitiva.</p>
+    <div class="reveal d1" style="display:flex; align-items:center; justify-content:center; gap:24px; margin-top:20px; flex-wrap:wrap;">
+      <span style="display:inline-flex; align-items:center; gap:6px; color:rgba(255,255,255,.85); font-size:.88rem;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.9)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        Instalación incluida
+      </span>
+      <span style="display:inline-flex; align-items:center; gap:6px; color:rgba(255,255,255,.85); font-size:.88rem;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.9)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        Soporte incluido
+      </span>
+      <span style="display:inline-flex; align-items:center; gap:6px; color:rgba(255,255,255,.85); font-size:.88rem;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.9)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        Cancelás cuando quieras
+      </span>
+    </div>
+    <div class="reveal d2">
+      <a class="btn btn-lg" href="https://wa.me/5492996214738?text=Quiero%20DeDiez%20en%20mi%20negocio" target="_blank" rel="noopener">
+        Quiero DeDiez en mi negocio
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div>
+      <a class="ig reveal d3" href="https://www.instagram.com/dediez.app/" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.4a4 4 0 1 1-7.9 1.2 4 4 0 0 1 7.9-1.2z"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
+        Seguinos en @dediez.app
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a href="#top" class="logo">
+          <img src="assets/logo-full.png" alt="DeDiez">
+        </a>
+        <p class="desc">Plataforma argentina de gestión de experiencia del cliente. Hecho en Neuquén, pensado para todo el país.</p>
+      </div>
+      <div>
+        <h4>Producto</h4>
+        <a href="#que-es">Qué es DeDiez</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#plataforma">La plataforma</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div>
+        <h4>Soluciones</h4>
+        <a href="#soluciones">Por rubro</a>
+        <a href="https://wa.me/5492996214738" target="_blank" rel="noopener">Pedir demo</a>
+        <a href="https://wa.me/5492996214738" target="_blank" rel="noopener">Soporte</a>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <a href="https://wa.me/5492996214738" target="_blank" rel="noopener">WhatsApp +54 9 2996 21-4738</a>
+        <a href="https://www.instagram.com/dediez.app/" target="_blank" rel="noopener">Instagram @dediez.app</a>
+        <a href="#">Neuquén, Argentina</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 DeDiez. Todos los derechos reservados.</span>
+      <a href="#" style="color: rgba(255,255,255,.6);">Políticas de privacidad</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============== WHATSAPP FAB ============== -->
+<a class="wa-fab" href="https://wa.me/5492996214738?text=Hola%20DeDiez" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 3.6 17l-1.1 4a.8.8 0 0 0 1 1l4.1-1a11 11 0 0 0 12.9-17.5zM12 20a8 8 0 0 1-4.1-1.1l-.3-.2-2.4.6.7-2.3-.2-.3a8 8 0 1 1 6.3 3.3zm4.5-5.9c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5 0a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.3-.4.7-1.2.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.5-.6-.5h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-1 2.3c0 1.3 1 2.6 1.1 2.7s2 3 4.7 4.2c1.7.7 2.3.7 3.1.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.1-.4-.2z"/></svg>
+</a>
+
+<script>
+  /* === Navbar scroll === */
+  const nav = document.getElementById('nav');
+  const onScroll = () => { nav.classList.toggle('scrolled', window.scrollY > 10); };
+  document.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  /* === Hamburger === */
+  const ham = document.getElementById('hamburger');
+  const menu = document.getElementById('mobile-menu');
+  ham.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    ham.setAttribute('aria-expanded', open);
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=>{
+    menu.classList.remove('open'); ham.setAttribute('aria-expanded', false);
+  }));
+
+  /* === FAQ accordion === */
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const btn = item.querySelector('.faq-q');
+    const ans = item.querySelector('.faq-a');
+    btn.addEventListener('click', () => {
+      const isOpen = item.classList.toggle('open');
+      ans.style.maxHeight = isOpen ? ans.scrollHeight + 'px' : 0;
+    });
+  });
+
+  /* === Dashboard tabs === */
+  const tabs = document.querySelectorAll('.dash-tab');
+  const panels = document.querySelectorAll('.dash-panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const key = tab.dataset.tab;
+      panels.forEach(p => {
+        p.hidden = (p.dataset.panel !== key);
+      });
+    });
+  });
+
+  
+  /* === Demo Simulator === */
+  function restartDemo(){
+    document.querySelectorAll('.demo-step').forEach(s => s.classList.remove('active'));
+    document.querySelector('[data-step="1"]').classList.add('active');
+    document.getElementById('demo-progress-bar').style.width = '25%';
+    const ta = document.querySelector('.demo-textarea');
+    if(ta){ ta.value = ''; }
+    const cc = document.getElementById('char-count');
+    if(cc){ cc.textContent = '0'; }
+  }
+
+  function goToStep(step){
+    document.querySelectorAll('.demo-step').forEach(s => s.classList.remove('active'));
+    const target = document.querySelector(`[data-step="${step}"]`);
+    if(target){
+      target.classList.add('active');
+      // force re-animation
+      target.style.animation = 'none';
+      target.offsetHeight;
+      target.style.animation = '';
+    }
+    // Update progress bar
+    const progress = {
+      '1': '25%', 'positive': '50%', 'negative': '50%',
+      'comment': '75%', 'thanks': '100%'
+    };
+    document.getElementById('demo-progress-bar').style.width = progress[step] || '25%';
+  }
+
+  // Emoji click
+  document.querySelectorAll('.demo-emoji').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const next = btn.dataset.next;
+      goToStep(next);
+    });
+  });
+
+  // Option click
+  document.querySelectorAll('.demo-option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.style.borderColor = 'var(--green)';
+      btn.style.background = '#f0fdf4';
+      setTimeout(() => goToStep(btn.dataset.goto), 300);
+    });
+  });
+
+  // Skip / Send click
+  document.querySelectorAll('.demo-skip, .demo-btn-send').forEach(btn => {
+    btn.addEventListener('click', () => {
+      goToStep(btn.dataset.goto);
+    });
+  });
+
+  // Character counter
+  const demoTA = document.querySelector('.demo-textarea');
+  if(demoTA){
+    demoTA.addEventListener('input', () => {
+      document.getElementById('char-count').textContent = demoTA.value.length;
+    });
+  }
+
+  /* === Reveal on scroll === */
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+
+  /* === Simulator modal === */
+  function openSimulator(){
+    document.getElementById('sim-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    restartDemo();
+  }
+  function closeSimulator(){
+    document.getElementById('sim-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeSimulatorOutside(e){
+    if(e.target === document.getElementById('sim-overlay')) closeSimulator();
+  }
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeSimulator(); });
+
+  /* === Reading progress bar === */
+  (function(){
+    const bar = document.getElementById('prog-bar');
+    if (!bar) return;
+    function updateBar(){
+      const d = document.documentElement;
+      const pct = d.scrollHeight - d.clientHeight > 0
+        ? (d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100 : 0;
+      bar.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', updateBar, { passive: true });
+    updateBar();
+  })();
+
+</script>
+
+</body>
+</html>
